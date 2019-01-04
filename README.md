@@ -14,8 +14,8 @@
 
 ##使用方法
 
-```javascript   
-  using Microsoft.CodeAnalysis;
+```
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Collections;
 using System.Collections.Generic;
