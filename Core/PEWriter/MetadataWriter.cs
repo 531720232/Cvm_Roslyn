@@ -1940,13 +1940,15 @@ namespace Microsoft.Cci
             this.PopulateCustomAttributeTableRows(sortedGenericParameters);
         }
 
+       
         private void PopulateAssemblyRefTableRows()
         {
-            var assemblyRefs = this.GetAssemblyRefs();
-            metadata.SetCapacity(TableIndex.AssemblyRef, assemblyRefs.Count);
-
-            foreach (var identity in assemblyRefs)
-            {
+           
+           // var assemblyRefs = this.GetAssemblyRefs();
+            metadata.SetCapacity(TableIndex.AssemblyRef, 1);
+            var PublicKeyToken = new byte[] { 0xb7, 0x7a, 0x5c, 0x56, 0x19, 0x34, 0xe0, 0x89 }.ToImmutableArray();
+            var identity = new AssemblyIdentity("mscorlib", new Version("2.0.0.0"), "neutral", PublicKeyToken, false);
+         
                 // reference has token, not full public key
                 metadata.AddAssemblyReference(
                     name: GetStringHandleForPathAndCheckLength(identity.Name),
@@ -1955,7 +1957,7 @@ namespace Microsoft.Cci
                     publicKeyOrToken: metadata.GetOrAddBlob(identity.PublicKeyToken),
                     flags: (AssemblyFlags)((int)identity.ContentType << 9) | (identity.IsRetargetable ? AssemblyFlags.Retargetable : 0),
                     hashValue: default(BlobHandle));
-            }
+            
         }
 
         private void PopulateAssemblyTableRows()
