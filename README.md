@@ -14,7 +14,7 @@
 
 ##使用方法
 
-```
+```csharp
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Collections;
